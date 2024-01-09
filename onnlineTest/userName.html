@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="userName.css"/>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>hello javascript</h1>
+    <div class="divtext"></div>
+    <div class="divtext"></div>
+    <div class="divtext"></div> 
+    
+    <p class="content"> This is a paragraph! </p>
+
+    <script>
+
+        let newbtn = document.createElement("button");
+
+        /*let newpara = document.createElement("p");
+        newpara.setAttribute("class","paraClass");
+        newpara.style.backgroundColor="yellow";*/
+
+        document.querySelector("p").classList.add("newClass");
+
+        newbtn.innerText = "click me";
+        newbtn.style.backgroundColor="pink";
+        newbtn.style.color="white";
+
+        let body = document.querySelector("body");
+        body.prepend(newbtn);
+
+        /*let merge = document.querySelector("h1");
+        merge.innerText = merge.innerText + " seekh lo"; */
+
+       /* let msg = document.querySelectorAll(".divtext");
+        msg[0].innerText = "div-1";
+        msg[1].innerText = "div-2";
+        msg[2].innerText = "div-3";*/
+
+        /*function username(){
+            let name = prompt("enter your name");
+            let userName = "@" + name + name.length;
+            alert(userName);
+        }
+        username(); */
+
+    </script>
+</body>
+
+</html>

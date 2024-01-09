@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Highlight the words with more than 8 letters</h1>
+
+    <p>
+Supported Browsers
+Google Chrome 1 and above
+Edge 12 and above
+Firefox 1 and above
+Opera 15 and above
+Safari 4 and above
+
+Whether you're preparing for your first job interview or aiming to upskill in this ever-evolving tech landscape, GeeksforGeeks Courses are your key to success.
+We provide top-quality content at affordable prices, all geared towards accelerating your growth in a time-bound manner.
+Join the millions we've already empowered, and we're here to do the same for you. Don't miss out - check it out now!
+    </p>
+
+    <script>
+        const paragraph = document.querySelector('p');
+        paragraph.innerHTML = paragraph.innerText
+                                .split(' ')
+                                .map(word=> word.length>8? `<span style="background-color: yellow">${word}</span>`:word)
+                                .join(' ');
+    </script>
+</body>
+</html>

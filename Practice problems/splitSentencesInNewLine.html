@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Test Paragraph</h1>
+
+    <p>
+width and height basics
+As a rule, width and height produce exactly the results one would expect. However, their use carries some important caveats.
+width and height cannot be applied to inline elements... There are several elements (such as span, strong, and em) that will ignore the application of width and height values under typical circumstances. A list of these elements can be found in the discussion of element types, later in this article.
+...except for images, which can be assigned width and height even though they are inline elements. The CSS 2.1 Recommendation refers to images as "replaced" elements, which means that the browsers should always treat them as possessing static dimensions. For this reason, those dimensions can be arbitrarily altered.
+width and height are only two of the properties that can influence the functional dimensions of an element. As a result, it's easy to put yourself in situations where an element is too small (usually too narrow) to hold its content as expected, leading to blowouts. The CSS box model discussion below addresses this issue.
+Rendering bugs in Microsoft Internet Explorer (IE) make it necessary to specify explicit width or height property/value pairs for some elements. There are some peculiarities about IE's rendering engine that can only be resolved with brute force (see the Glossary). Most of these peculiarities are known and slated to be removed from IE 8, but until that version has replaced its predecessors within the IE install base, this issue will be an inevitable test case. PositionIsEverything.net and the CSS-Discuss Wiki provide ample information about this issue and techniques that work around it.
+Rounding algorithms will, from time to time, cause off-spec differences in layout between browsers which display content via LCD, LED, or CRT (type="screen") display media. The screen media type ultimately requires all units to be coverted into pixel measurements, which may map differently from one browser to the next.
+min-width, max-width, min-height, and max-height
+From time to time you will encounter situations in which you need to constrain the size of an element — usually to ensure that a proportionally-sized column will always retain a readable width. The various min- and max- properties answer this requirement. As is the case with width and height, the results one can expect from using these properties are fairly predictable as a matter of course.
+However, in the experience of this author, these properties have limited use (although other authors disagree). Like plain old width and height, they're subject to rounding errors that can deliver entirely unexpected results. More importantly, they are completely unsupported in IE 6, which still holds a considerable market share as of July 2008.
+Demonstration 4
+auto margins were placed to the left and right of the page container. Now it needs a width for those margin values to make any sense. Furthermore, the plan is to assign a float value to the pullquote, so that'll get a width, too.
+    </p>
+    <script>
+        const paragraph = document.querySelector('p');
+        paragraph.innerHTML = paragraph.textContent.split('.').join('</p><p>') + '</p>';
+    </script>
+</body>
+</html>

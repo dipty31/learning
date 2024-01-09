@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1 id="question">Quiz</h1>
+        <ul id="options"></ul>
+        <button onclick="validate()">Submit Answer</button>
+    </div>
+    <script>
+        class Player {
+            constructor(name) {
+                this.name = name;
+                this.score = 0;
+            }
+        }
+
+        const Questions = [
+            {
+                question: 'What is the current year?',
+                options: ['1989', '2000', '2024', '2023'],
+                ans: 2
+            },
+            {
+                question: 'How many fingers are there?',
+                options: ['0', '2', '20', 'You cannot see'],
+                ans: 3
+            },
+            {
+                question: 'Which one is an object?',
+                options: ['table', 'woman', 'all of these', 'puppy'],
+                ans: 0
+            },
+        ];
+
+        let currIndex = 0;
+        let currPlayer;
+        let userAnswer = null;
+        //let score=0;
+
+        function start() {
+            //debugger;
+            const name = prompt('Enter the player name');
+            currPlayer = new Player(name);
+            displayQuestion();
+            //checkAnswer(userAnswer);
+        }
+
+        function displayQuestion() {
+            const currQue = Questions[currIndex];
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+
+            questionElement.textContent = currQue.question;
+            
+            optionsElement.innerHTML = '';
+            currQue.options.forEach((option, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${index + 1}. ${option}`;
+                li.onclick = () => selectOption(index);
+                optionsElement.appendChild(li);
+            });
+        }
+
+        function selectOption(choice) {
+            //console.log(choice)
+            const currQue = Questions[currIndex];
+            const options = document.querySelector('#options li');
+            currQue.options.forEach((option, index) => {
+                //options.classList.remove('selected');
+                if (index == choice) {
+                    //options.classList.add('selected');
+                    //console.log(options.innerHTML)
+                    userAnswer = option
+                }
+            });
+        }
+
+        function validate(){
+            checkAnswer(userAnswer);
+        }
+        /*if (userAnswer !== null && !isNaN(userAnswer)) {
+            const userChoice = parseInt(userAnswer) - 1;
+            
+            if (userChoice >= 0 && userChoice < Questions[currIndex].options.length) {
+                checkAnswer(userChoice);
+            } else {
+                alert('Invalid choice. Please enter a valid option.');
+                askQuestion();
+            }
+        }*/
+    
+    
+    function checkAnswer(userChoice) {
+        const currentQuestion = Questions[currIndex];
+    console.log(currentQuestion.options[currentQuestion.ans])
+    console.log(userChoice)
+        if (userChoice == currentQuestion.options[currentQuestion.ans]) {
+            currPlayer.score++;
+            alert('Correct' + currPlayer.name + ' ! Your score: ' + currPlayer.score);
+        } else {
+            alert('Incorrect. The correct answer was: ' + currentQuestion.options[currentQuestion.ans]);
+        }
+    
+        currIndex++;
+    }
+
+        function endGame() {
+            alert(`Game over, ${currPlayer.name}! Your final score is: ${currPlayer.score}`);
+        }
+
+        start();
+    </script>
+    <!-- <table id="mytable">
+        <tr><td>President of India is? <br>
+            <label>
+                <input type="checkbox" name="option" value="true" class="trueOption">Murmur
+            </label>
+            <label>
+                <input type="checkbox" name="option" value="false" class="falseOption">Obama
+            </label>
+            <label>
+                <input type="checkbox" name="option" value="false" class="falseOption">Mukherji
+            </label>
+        </td>
+        </tr>
+
+        <tr><td>President of USA? <br>
+            <label>
+                <input type="checkbox" name="option" value="false" class="falseOption">Patil
+            </label>
+            <label>
+                <input type="checkbox" name="option" value="false" class="falseOption">Obama
+            </label>
+            <label>
+                <input type="checkbox" name="option" value="true" class="trueOption">Biden
+            </label>
+        </td>
+        </tr>
+    </table>
+    <button onClick="scoreCalc()" type="button"> finish test </button>
+
+    <script>
+    function scoreCalc(){
+        let trueOptions = document.querySelectorAll('.trueOption:checked');
+        let totalScore = trueOptions.length;
+    
+        alert("Total Score: " + totalScore);
+        
+    }
+
+    </script> -->
+</body>
+</html>

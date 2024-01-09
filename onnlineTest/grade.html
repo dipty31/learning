@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <div id="display">
+       <ul></ul> 
+    </div>
+<body>
+    <script>
+
+        function range(value, min, max){
+            return value>=min && value<=max;
+        }
+
+        function displayResult(){
+
+        const marks = prompt("enter the student's marks ");
+
+        if(range(marks,80,100)){
+            let grade=document.createElement('li');
+            grade.innerHTML = 'A';
+        } else if(range(marks,70,89)){
+            console.log('B');
+        }
+        else if(range(marks,60,69)){
+            console.log('C');
+        }
+        else if(range(marks,50,59)){
+            console.log('D');
+        }
+        else{
+            console.log('F');
+        }
+
+    } 
+    document.getElementById("display").innerHTML = displayResult();
+    </script>
+</body>
+</html>

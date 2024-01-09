@@ -1,0 +1,71 @@
+<html>
+    <head>
+    <title>to do list</title>
+    <link rel = "stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <table id = "myTable" border="1" padding="50px" 
+        style="background-color: rgb(243, 246, 246); border-color: rgb(6, 6, 6) rgb(12, 12, 12) rgb(3, 3, 3) rgb(2, 3, 3);">
+            <thead>
+                <tr>
+                    <th>Task </th>
+                    <th> Status </th>
+                    <th> Delete_Option</th>
+                </tr>
+                
+                <tbody id="cell1">
+
+                </tbody>
+            </thead>
+            <button onClick="clearAll()" >Clear All</button>
+        </table> 
+
+            <input type ="text" id="Task" placeholder="enter new task">
+            <button onClick="addrow()" type="button">Add Row</button><br>
+
+            <script>
+
+                document.addEventListener('DOMContentLoaded', loadTasks);
+                function erase(del){
+                    del.parentElement.parentElement.remove();
+                    
+                }
+//--------------------------------------------------------------------------
+                function clearAll(){
+                    const taskList  = document.getElementById('cell1');
+                    taskList.innerHTML = taskList.textContent.remove();
+                }
+//--------------------------------------------------------------------------
+
+                function completed(param){
+                    param.parentElement.style.backgroundColor = "green";
+                    param.value = "ho gaya";
+                }
+                function addrow(){
+                    const task = document.getElementById("Task");
+                    const taskinput = document.getElementById("cell1");
+                    const input1 = 
+
+                    taskinput.innerHTML += `<tr>
+                        <td>${task.value}</td>
+                        <td><input type ='button' onClick=completed(this) id='Status'>
+                        </td>
+                        <td><input type ='button' onClick=erase(this) id='Status' ></td>
+                    </tr>`
+                    <!-- taskinput.appendChild(taskinput); -->
+
+                }
+
+                function saveTask(){
+                    const task = document.getElementById("task");
+                    if(task!=' '){
+                        taskList.push(task);
+                    }
+                    localStorage.setItem(task, JSON.stringify(taskList));
+                }
+
+                //task.value = '';
+                const tasksList = [];
+</script>
+    </body>
+</html>
