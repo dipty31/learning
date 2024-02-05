@@ -5,6 +5,7 @@ import { removePost } from '../thunks/removePost';
 import { updatePost } from '../thunks/updatePost';
 import { useSelector } from 'react-redux';
 import { redirect } from 'react-router-dom';
+import { searchPost } from '../thunks/searchPost';
 
 const postsSlice = createSlice({
     name: 'posts',
@@ -59,8 +60,8 @@ const postsSlice = createSlice({
 
         builder.addCase(removePost.fulfilled, (state,action) => {
             state.isLoading = false;
-            console.log({id : action.payload})
-            state.data = state.data.filter((post) => {
+            //console.log({id : action.payload})
+            state.data = state.data.map((post) => {
                 return post.id === action.payload.id ? action.payload: post;
             });
         });
@@ -74,23 +75,37 @@ const postsSlice = createSlice({
                 state.isLoading = true;
             });
             
-            builder.addCase(updatePost.fulfilled, (state,action) => {
-                state.isLoading = false;
-                // console.log({payload: action.payload});
-                // state.data.posts = action.payload;
+        builder.addCase(updatePost.fulfilled, (state,action) => {
+            state.isLoading = false;
+            // console.log({payload: action.payload});
+            // state.data.posts = action.payload;
 
-                const index = state.data.findIndex((post) => 
-                    post.id === action.payload.id
-                )
-                // console.log({index})
-                state.data[index] = action.payload;
-            });
+            const index = state.data.findIndex((post) => 
+                post.id === action.payload.id
+            )
+            // console.log({index})
+            state.data[index] = action.payload;
+        });
 
             builder.addCase(updatePost.rejected, (state,action) => {
                 state.isLoading = false;
                 state.error = action.error;
             });
             
+
+            builder.addCase(searchPost.pending, (state,action) => {
+                state.isLoading = true;
+            });
+
+            builder.addCase(searchPost.fulfilled, (state,action) => {
+                state.isLoading = false;
+                state.data = [...action.payload.posts];
+            });
+
+            builder.addCase(searchPost.rejected, (state,action) => {
+                state.isLoading = false;
+                state.error = action.error;
+            });
     },
 });
 

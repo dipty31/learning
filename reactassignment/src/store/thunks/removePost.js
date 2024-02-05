@@ -5,7 +5,7 @@ const removePost = createAsyncThunk('posts/remove', async (post) => {
     console.log(post);
     const response = await axios.delete(`https://dummyjson.com/posts/${post.id}`);
 
-    return response.data;
+    return post;
 });
 
 export { removePost };

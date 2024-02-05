@@ -13,7 +13,7 @@ function PostsListItem({post}){
     const handleDelete =(e) => {
         e.preventDefault();
         console.log({post});
-        dispatch(doRemovePost());
+        dispatch(removePost(post));
     };
 
     const handleUpdate =() => {
@@ -28,14 +28,14 @@ function PostsListItem({post}){
         <div className="mb-2 border rounded">
             <div className="flex p-2 justify-between items-center cursor-pointer">
                 <div className={`flex flex-row items-center justify-between bg-${post.isDeleted ? 'red-500' : 'white-500'}`}>
-                    <button className="mr-3"
+                    <button className="mr-3 border"
                             onClick={handleDelete}
                             disabled={post.isDeleted}>
                     {post.isDeleted ? 'POST DELETED' : <FaRegTrashCan />}
                     </button>
                     {error && <div>Error in deleting the user.</div>}
                     {post.isDeleted?'POST IS DELETED': post.body}
-                    <Link to={`/updateForm/${post.id}`}><button  onClick={handleUpdate} ><FaRegEdit /></button></Link>
+                    <Link to={`/updateForm/${post.id}`}><button  classname="border" onClick={handleUpdate} ><FaRegEdit /></button></Link>
                 </div>
             </div>
         </div>
