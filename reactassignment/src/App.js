@@ -27,6 +27,7 @@ function App(){
     const [doFetchPost] = useThunk(fetchPost);
 useEffect(()=> {
     doFetchPost();
+    // fetching
 }, [doFetchPost]);
 
     return(
