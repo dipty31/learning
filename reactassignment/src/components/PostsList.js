@@ -17,7 +17,19 @@ function PostsList(){
     const data = useSelector(selectPosts);
 
     const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
 
+    const [itemsPerPage] = useState(5);
+
+//-----
+    useEffect(() => {
+      dispatch(fetchPost({ start: 0, end: 4, currentPage: 0}));
+    }, []);
+
+    const handlePageChange = (newPage) => {
+      setCurrentPage(newPage);
+  };
+//------
 const handlePostAdd = () => {
     doCreatePost();
 };
@@ -44,10 +56,14 @@ else if(loadingPostError){
     content = <div>Error fetching data...</div>
 } 
 else{
-    content = filteredPosts.map((post) => {
-        return <PostsListItem key={post.id} post={post} />; 
-    });
+  const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const currentPosts = filteredPosts.slice(startIndex, endIndex);
 
+        content = currentPosts.map((post) => {
+            return <PostsListItem key={post.id} post={post} />;
+        });
+  }   
 
     return(
         <div>
@@ -68,10 +84,24 @@ else{
         {creatingPostError && 'Error creating post.'}
 
         </div>
+
         {content}
+        <div className="flex justify-center mt-4">
+                {Array.from({ length: Math.ceil(filteredPosts.length / itemsPerPage) }).map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={`mx-2 px-3 py-1 rounded ${
+                            currentPage === index + 1 ? 'bg-gray-300' : 'bg-white'
+                        }`}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+      </div> 
         </div>
     );
 }
-}
+
 
 export default PostsList;

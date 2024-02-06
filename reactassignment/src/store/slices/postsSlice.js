@@ -13,6 +13,13 @@ const postsSlice = createSlice({
         data:[],
         isLoading: false,
         error: null,
+
+        //Iitial states for Pagination
+        currentPage: 1,
+        itemsPerPage: 5,
+        totalItems: 0,
+        //------
+
     },
 
     extraReducers(builder){
@@ -22,9 +29,12 @@ const postsSlice = createSlice({
 
         builder.addCase(fetchPost.fulfilled, (state,action) => {
             state.isLoading = false;
-            // console.log("fullfilled")
-            // console.log([...action.payload.posts]);
             state.data = [...action.payload.posts];
+
+            //Pagination state update
+            state.totalItems = action.payload.length;
+            state.error = null;
+            //----
         });
 
         builder.addCase(fetchPost.rejected, (state,action) => {
