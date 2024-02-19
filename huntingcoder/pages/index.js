@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
+// import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 
@@ -42,7 +42,8 @@ export default function Home() {
         </div>
 
         <div className={styles.imagewrap}>
-        <Image className={styles.myImg} src="/istockphoto-1439425791-1024x1024.jpg" width={237} height={158} />
+        {/* <Image className={styles.myImg} src="/istockphoto-1439425791-1024x1024.jpg" width={237} height={158} /> */} {/*next Image component can't be used when SSGing the application */}
+        <img className={styles.myImg} src="/istockphoto-1439425791-1024x1024.jpg" width={237} height={158} alt="hunting coder"></img>
         </div>
 
       <div>
