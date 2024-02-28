@@ -13,5 +13,5 @@ const OrderSchema = new mongoose.Schema({
     status: {type: String, default: 'Pending', required: true},
 }, {timestamps: true});
 // timestamps is an object, it'll automatically make 'created at' and 'updated at'
-
+mongoose.models = {}
 export default mongoose.model('Order', OrderSchema);

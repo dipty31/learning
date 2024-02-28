@@ -16,5 +16,5 @@ const ProductSchema = new mongoose.Schema({
 
 }, {timestamps: true});
 // timestamps is an object, it'll automatically make 'created at' and 'updated at'
-
+mongoose.models = {}
 export default mongoose.model('Product', ProductSchema);
