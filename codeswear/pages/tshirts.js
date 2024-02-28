@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 const Tshirts = () => {
   return (
-    <div>
+    <div >
       <section className="text-gray-600 body-font">
   <div className="container px-5 py-24 mx-auto">
-    <div className="flex flex-wrap m-4">
+    <div className="flex flex-wrap m-4 justfy-center">
       <Link href="/product/wear-the-code"><div className="lg:w-1/3 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-2 inline-block">
           <img alt="ecommerce" className="m-auto md:m-0 h-36[vh] block" src="https://m.media-amazon.com/images/I/41kStnUgzpL.jpg" />
         
